@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class IngredientesController extends Controller
+class Raw_MaterialController extends Controller
 {
     /**
      * Display a listing of the resource.
