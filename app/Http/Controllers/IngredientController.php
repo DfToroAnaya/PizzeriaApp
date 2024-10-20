@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Ingredient;
 
 class IngredientController extends Controller
 {
@@ -12,6 +13,8 @@ class IngredientController extends Controller
     public function index()
     {
         //
+        $ingredients= Ingredient::all();
+        return view('ingredient.index',['ingredients'=>$ingredients]);
     }
 
     /**
@@ -20,6 +23,7 @@ class IngredientController extends Controller
     public function create()
     {
         //
+        return view('ingredient.create');
     }
 
     /**
@@ -28,6 +32,13 @@ class IngredientController extends Controller
     public function store(Request $request)
     {
         //
+
+        $ingredient = new Ingredient();
+        $ingredient->name = $request->nombre;
+        $ingredient->save();
+
+        // Redirigir a la lista de categorías
+        return redirect()->route('ingredients.index');
     }
 
     /**
@@ -44,6 +55,8 @@ class IngredientController extends Controller
     public function edit(string $id)
     {
         //
+        $ingredient = Ingredient::find($id);
+        return view('ingredient.edit', ['ingredient' => $ingredient]);
     }
 
     /**
@@ -52,6 +65,12 @@ class IngredientController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $ingredient = Ingredient::find($id);
+        $ingredient->name = $request->nombre;
+        $ingredient->save();
+
+        // Redirigir a la lista de categorías
+        return redirect()->route('ingredients.index');
     }
 
     /**
@@ -60,5 +79,11 @@ class IngredientController extends Controller
     public function destroy(string $id)
     {
         //
+
+        $ingredient = Ingredient::find($id);
+        $ingredient->delete();
+
+        // Redirigir a la lista de categorías
+        return redirect()->route('ingredient.index');
     }
 }
