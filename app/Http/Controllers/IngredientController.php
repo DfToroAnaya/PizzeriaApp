@@ -84,6 +84,6 @@ class IngredientController extends Controller
         $ingredient->delete();
 
         // Redirigir a la lista de categorías
-        return redirect()->route('ingredient.index');
+        return redirect()->route('ingredients.index');
     }
 }

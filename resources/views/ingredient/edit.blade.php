@@ -8,7 +8,7 @@
 
     <div class="container">
       <br>
-      <form method="POST" action="{{route('ingredients.update',['pizza'=>$ingredient->id])}}">
+      <form method="POST" action="{{route('ingredients.update',['ingredient'=>$ingredient->id])}}">
           @method('put')
           @csrf
           <div class="mb-3">
