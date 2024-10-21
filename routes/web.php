@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
     Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
     Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+
+    //ROUTES ORDERS
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
+    Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+    Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+    
 
 });
 
