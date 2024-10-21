@@ -33,6 +33,10 @@
                     <x-nav-link :href="route('extra_ingredients.index')" :active="request()->routeIs('extra_ingredients.index')">
                         {{ __('Ingredientes Extra') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('branches.index')" :active="request()->routeIs('branches.index')">
+                        {{ __('Branches') }}
+                    </x-nav-link>
                 </div>
 
 
@@ -108,6 +112,10 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('extra_ingredients.index')" :active="request()->routeIs('extra_ingredients.index')">
                 {{ __('Ingredientes Extra') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('branches.index')" :active="request()->routeIs('branches.index')">
+                {{ __('Branches') }}
             </x-responsive-nav-link>
         </div>
 
