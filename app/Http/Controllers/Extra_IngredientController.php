@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Extra_ingredient;
 
 class Extra_IngredientController extends Controller
 {
@@ -12,6 +13,8 @@ class Extra_IngredientController extends Controller
     public function index()
     {
         //
+        $extra_ingredients= extra_ingredient::all();
+        return view('extra_ingredient.index',['extra_ingredients'=>$extra_ingredients]);
     }
 
     /**
@@ -20,6 +23,7 @@ class Extra_IngredientController extends Controller
     public function create()
     {
         //
+        return view('extra_ingredient.create');
     }
 
     /**
@@ -28,6 +32,13 @@ class Extra_IngredientController extends Controller
     public function store(Request $request)
     {
         //
+        $extra_ingredient = new Extra_ingredient();
+        $extra_ingredient->name = $request->nombre;
+        $extra_ingredient->price = $request->price;
+        $extra_ingredient->save();
+
+        // Redirigir a la lista de categorías
+        return redirect()->route('extra_ingredients.index');
     }
 
     /**
@@ -44,6 +55,8 @@ class Extra_IngredientController extends Controller
     public function edit(string $id)
     {
         //
+        $extra_ingredient = Extra_ingredient::find($id);
+        return view('extra_ingredient.edit', ['extra_ingredient' => $extra_ingredient]);
     }
 
     /**
@@ -52,6 +65,13 @@ class Extra_IngredientController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $extra_ingredient = Extra_ingredient::find($id);
+        $extra_ingredient->name = $request->nombre;
+        $extra_ingredient->price = $request->price;
+        $extra_ingredient->save();
+
+        // Redirigir a la lista de categorías
+        return redirect()->route('extra_ingredients.index');
     }
 
     /**
@@ -60,5 +80,10 @@ class Extra_IngredientController extends Controller
     public function destroy(string $id)
     {
         //
+        $extra_ingredient = Extra_ingredient::find($id);
+        $extra_ingredient->delete();
+
+        // Redirigir a la lista de categorías
+        return redirect()->route('extra_ingredients.index');
     }
 }
