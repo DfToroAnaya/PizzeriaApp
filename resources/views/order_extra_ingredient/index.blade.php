@@ -31,7 +31,17 @@
                   <td>{{$order_extra_ingredient->price}}</td>
                     <td>{{$order_extra_ingredient->name_ingredient}}</td>
                     <td>{{$order_extra_ingredient->quantity}}</td>
-                    
+                    <td>
+                      
+                      <a href="{{ route('order_extra_ingredients.edit', ['order_extra_ingredient' => $order_extra_ingredient->code])}}" class="btn btn-info">Edit</a>
+
+                      <form action="{{ route('order_extra_ingredients.destroy', ['order_extra_ingredient' => $order_extra_ingredient->code]) }}" 
+                        method="POST" style="display: inline-block">
+                      @method('delete')
+                    @csrf
+                  <input class="btn btn-danger" type="submit" value="Delete">
+                </form>
+                    </td>
                   </tr>
                 @endforeach
             </tbody>

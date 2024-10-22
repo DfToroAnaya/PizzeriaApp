@@ -26,6 +26,9 @@ Route::get('/pizza_sizes/{pizza_size}/edit', [Pizza_SizesController::class, 'edi
 Route::get('/order_extra_ingredients', [Order_Extra_IngredientController::class, 'index'])->name('order_extra_ingredients.index');
 Route::post('/order_extra_ingredients', [Order_Extra_IngredientController::class, 'store'])->name('order_extra_ingredients.store');
 Route::get('/order_extra_ingredients/create', [Order_Extra_IngredientController::class, 'create'])->name('order_extra_ingredients.create');
+Route::delete('/order_extra_ingredients/{order_extra_ingredient}', [Order_Extra_IngredientController::class,  'destroy'])->name('order_extra_ingredients.destroy');
+Route::put('/order_extra_ingredients/{order_extra_ingredient}', [Order_Extra_IngredientController::class, 'update'])->name('order_extra_ingredients.update');
+Route::get('/order_extra_ingredients/{order_extra_ingredient}/edit', [Order_Extra_IngredientController::class, 'edit'])->name('order_extra_ingredients.edit');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
