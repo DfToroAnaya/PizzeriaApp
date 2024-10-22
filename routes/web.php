@@ -11,10 +11,18 @@ use App\Http\Controllers\Pizza_SizesController;
 use App\Http\Controllers\BrancheController;
 use App\Http\Controllers\Order_Extra_IngredientController;
 use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\Raw_MaterialController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/pizza_sizes', [Pizza_SizesController::class, 'index'])->name('pizza_sizes.index');
 Route::post('/pizza_sizes', [Pizza_SizesController::class, 'store'])->name('pizza_sizes.store');
@@ -30,9 +38,19 @@ Route::delete('/order_extra_ingredients/{order_extra_ingredient}', [Order_Extra_
 Route::put('/order_extra_ingredients/{order_extra_ingredient}', [Order_Extra_IngredientController::class, 'update'])->name('order_extra_ingredients.update');
 Route::get('/order_extra_ingredients/{order_extra_ingredient}/edit', [Order_Extra_IngredientController::class, 'edit'])->name('order_extra_ingredients.edit');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/suppliers',[SupplierController::class, 'index'])->name('suppliers.index');
+Route::post('/suppliers',[SupplierController::class, 'store'])->name('suppliers.store');
+Route::get('/suppliers/create', [SupplierController::class, 'create'])->name('suppliers.new');
+Route::delete('/suppliers/{supplier}', [SupplierController::class, 'destroy'])->name('suppliers.destroy');
+Route::put('/suppliers/{supplier}', [SupplierController::class, 'update'])->name('suppliers.update');
+Route::get('/suppliers/{supplier}/edit', [SupplierController::class, 'edit'])->name('suppliers.edit');
+
+Route::get('/raw_materials',[Raw_MaterialController::class, 'index'])->name('raw_materials.index');
+Route::post('/raw_materials',[Raw_MaterialController::class, 'store'])->name('raw_materials.store');
+Route::get('/raw_materials/create', [Raw_MaterialController::class, 'create'])->name('raw_materials.new');
+Route::delete('/raw_materials/{raw_material}', [Raw_MaterialController::class, 'destroy'])->name('raw_materials.destroy');
+Route::put('/raw_materials/{raw_material}', [Raw_MaterialController::class, 'update'])->name('raw_materials.update');
+Route::get('/raw_materials/{raw_material}/edit', [Raw_MaterialController::class, 'edit'])->name('raw_materials.edit');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

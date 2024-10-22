@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Raw_Material extends Model
 {
     use HasFactory;
+    protected $table = 'raw_materials';
 }
