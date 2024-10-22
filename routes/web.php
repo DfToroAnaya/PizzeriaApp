@@ -8,6 +8,7 @@ use App\Http\Controllers\PizzaController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\Extra_IngredientController;
 use App\Http\Controllers\BrancheController;
+use App\Http\Controllers\Order_PizzaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,7 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    //ROUTES CLIENTS
+    ////---------------------> CLIENTS <---------------------
+
     Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
     Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
     Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
@@ -30,7 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
     Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
 
-    //ROUTES ORDERS
+    ////---------------------> ORDERS <---------------------
+
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
@@ -38,8 +41,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
     Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
     
-
-
     //---------------------> PIZZA <---------------------
 
     Route::get('/pizzas',[PizzaController::class, 'index'])->name('pizzas.index');
@@ -58,7 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/ingredients/{ingredient}', [IngredientController::class, 'update'])->name('ingredients.update');
     Route::get('/ingredients/{ingredient}/edit', [IngredientController::class, 'edit'])->name('ingredients.edit');
 
-    //---------------------> RXTRA INGREDIENTS <---------------------
+    //---------------------> EXTRA INGREDIENTS <---------------------
 
     Route::get('/extra_ingredients',[Extra_IngredientController::class, 'index'])->name('extra_ingredients.index');
     Route::post('/extra_ingredients',[Extra_IngredientController::class, 'store'])->name('extra_ingredients.store');
@@ -75,22 +76,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/branches/{branche}', [BrancheController::class, 'destroy'])->name('branches.destroy');
     Route::put('/branches/{branche}', [BrancheController::class, 'update'])->name('branches.update');
     Route::get('/branches/{branche}/edit', [BrancheController::class, 'edit'])->name('branches.edit');
-    //ROUTES CLIENTS
-    Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
-    Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
-    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
-    Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
-    Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
-    Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
-
-    //ROUTES ORDERS
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-    Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
-    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
-    Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
-    Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
     
+
+    //---------------------> ORDERS PIZZA <---------------------
+    Route::get('/order_pizzas', [Order_PizzaController::class, 'index'])->name('order_pizzas.index');
+    Route::post('/order_pizzas', [Order_PizzaController::class, 'store'])->name('order_pizzas.store');
+    Route::get('/order_pizzas/create', [Order_PizzaController::class, 'create'])->name('order_pizzas.create');
+    Route::delete('/order_pizzas/{order_pizza}', [Order_PizzaController::class, 'destroy'])->name('order_pizzas.destroy');
+    Route::put('/order_pizzas/{order_pizza}', [Order_PizzaController::class, 'update'])->name('order_pizzas.update');
+    Route::get('/order_pizzas/{order_pizza}/edit', [Order_PizzaController::class, 'edit'])->name('order_pizzas.edit');
+    
+
 
 });
 
