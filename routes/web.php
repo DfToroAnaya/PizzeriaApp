@@ -10,6 +10,7 @@ use App\Http\Controllers\Extra_IngredientController;
 use App\Http\Controllers\Pizza_SizesController;
 use App\Http\Controllers\BrancheController;
 use App\Http\Controllers\Order_Extra_IngredientController;
+use App\Http\Controllers\EmployeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -88,6 +89,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/branches/{branche}', [BrancheController::class, 'destroy'])->name('branches.destroy');
     Route::put('/branches/{branche}', [BrancheController::class, 'update'])->name('branches.update');
     Route::get('/branches/{branche}/edit', [BrancheController::class, 'edit'])->name('branches.edit');
+
+    //---------------------> EMPLOYEES <---------------------
+    Route::get('/employees',[EmployeController::class, 'index'])->name('employees.index');
+    Route::post('/employees',[EmployeController::class, 'store'])->name('employees.store');
+    Route::get('/employees/create', [EmployeController::class, 'create'])->name('employees.create');
+    Route::delete('/employees/{employee}', [EmployeController::class, 'destroy'])->name('employees.destroy');
+    Route::put('/employees/{employee}', [EmployeController::class, 'update'])->name('employees.update');
+    Route::get('/employees/{employee}/edit', [EmployeController::class, 'edit'])->name('employees.edit');
+
+
+
     //ROUTES CLIENTS
     Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
     Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
@@ -103,6 +115,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
     Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+
+
+
     
 
 });
