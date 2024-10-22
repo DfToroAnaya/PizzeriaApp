@@ -1,12 +1,18 @@
 <?php
 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PizzaController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\Extra_IngredientController;
+<<<<<<< HEAD
 use App\Http\Controllers\Pizza_SizesController;
 
+=======
+use App\Http\Controllers\BrancheController;
+>>>>>>> 93ffc2958a9d8341e95c14cfcb2a015f44d33274
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,6 +61,32 @@ Route::middleware('auth')->group(function () {
     Route::delete('/extra_ingredients/{extra_ingredient}', [Extra_IngredientController::class, 'destroy'])->name('extra_ingredients.destroy');
     Route::put('/extra_ingredients/{extra_ingredient}', [Extra_IngredientController::class, 'update'])->name('extra_ingredients.update');
     Route::get('/extra_ingredients/{extra_ingredient}/edit', [Extra_IngredientController::class, 'edit'])->name('extra_ingredients.edit');
+
+
+    //---------------------> BRANCHES <---------------------
+    Route::get('/branches',[BrancheController::class, 'index'])->name('branches.index');
+    Route::post('/branches',[BrancheController::class, 'store'])->name('branches.store');
+    Route::get('/branches/create', [BrancheController::class, 'create'])->name('branches.create');
+    Route::delete('/branches/{branche}', [BrancheController::class, 'destroy'])->name('branches.destroy');
+    Route::put('/branches/{branche}', [BrancheController::class, 'update'])->name('branches.update');
+    Route::get('/branches/{branche}/edit', [BrancheController::class, 'edit'])->name('branches.edit');
+    //ROUTES CLIENTS
+    Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+    Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
+    Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+    Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
+    Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+
+    //ROUTES ORDERS
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
+    Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+    Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+    
+
 });
 
 require __DIR__.'/auth.php';

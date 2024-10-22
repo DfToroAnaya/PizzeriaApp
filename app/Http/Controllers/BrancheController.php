@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Branche;
 
 class BrancheController extends Controller
 {
@@ -11,7 +12,8 @@ class BrancheController extends Controller
      */
     public function index()
     {
-        //
+        $branches=Branche::all();
+        return view('branche.index',['branches' => $branches]);
     }
 
     /**
@@ -19,7 +21,7 @@ class BrancheController extends Controller
      */
     public function create()
     {
-        //
+        return view('branche.new');
     }
 
     /**
@@ -27,7 +29,13 @@ class BrancheController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $branche = new Branche();
+        $branche->name = $request->name;
+        $branche->address=$request->address;
+        $branche->save();
+
+        // Redirigir a la lista de categorías
+       return redirect()->route('branches.index');
     }
 
     /**
@@ -43,7 +51,8 @@ class BrancheController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $branches=Branche::find($id);
+        return view('branche.edit', ['branche' => $branches]);
     }
 
     /**
@@ -51,7 +60,12 @@ class BrancheController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $branche = Branche::find($id);
+        $branche->name = $request->name;
+        $branche->address=$request->address;
+        $branche->save();
+
+        return redirect()->route('branches.index');
     }
 
     /**
@@ -59,6 +73,10 @@ class BrancheController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $branche = Branche::find($id);
+        $branche->delete();
+
+        // Redirigir a la lista de categorías
+        return redirect()->route('branches.index');
     }
 }
