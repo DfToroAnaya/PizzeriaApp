@@ -8,7 +8,7 @@
 
     <div class="container">
         <br> 
-        <a href="{{ route('orders.create') }}" class="btn btn-success"> Add </a>
+        <a href="{{ route('orders.create') }}" class="btn btn-success"> Add Order </a>
         
         <table class="table">
             <thead>

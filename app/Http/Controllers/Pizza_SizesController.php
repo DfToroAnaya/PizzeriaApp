@@ -83,7 +83,7 @@ class Pizza_SizesController extends Controller
     {
         $pizza_size =  Pizza_size::find($id);
 
-        $pizza_size->id = $request->id;
+        //$pizza_size->id = $request->id;
         $pizza_size->pizzas_id = $request->pizzas_id;
         $pizza_size->size = $request->size;
         $pizza_size->price =$request->price;

@@ -7,12 +7,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PizzaController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\Extra_IngredientController;
-<<<<<<< HEAD
 use App\Http\Controllers\Pizza_SizesController;
-
-=======
 use App\Http\Controllers\BrancheController;
->>>>>>> 93ffc2958a9d8341e95c14cfcb2a015f44d33274
+use App\Http\Controllers\Order_Extra_IngredientController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,6 +22,10 @@ Route::delete('/pizza_sizes/{pizza_size}', [Pizza_SizesController::class , 'dest
 Route::put('/pizza_sizes/{pizza_size}', [Pizza_SizesController::class, 'update'])->name('pizza_sizes.update');
 Route::get('/pizza_sizes/{pizza_size}/edit', [Pizza_SizesController::class, 'edit'])->name('pizza_sizes.edit');
 
+Route::get('/order_extra_ingredients', [Order_Extra_IngredientController::class, 'index'])->name('order_extra_ingredients.index');
+Route::post('/order_extra_ingredients', [Order_Extra_IngredientController::class, 'store'])->name('order_extra_ingredients.store');
+Route::get('/order_extra_ingredients/create', [Order_Extra_IngredientController::class, 'create'])->name('order_extra_ingredients.create');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -33,6 +34,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //ROUTES CLIENTS
+    Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+    Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
+    Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+    Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
+    Route::get('/clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+
+    //ROUTES ORDERS
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+    Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->name('orders.destroy');
+    Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders.update');
+    Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+    
 
 
     //---------------------> PIZZA <---------------------

@@ -17,10 +17,10 @@
             @method('put')
             @csrf
             <div class="mb-3">
-              <label for="codigo" class="form-label">Code</label>
-              <input type="text" class="form-control" id="id" aria-describedby="codigoHelp" name="id"
+              <label for="id" class="form-label">Code</label>
+              <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id"
               disabled="disabled" value="{{ $pizza_size->id}}">
-              <div id="codigolHelp" class="form-text">Pizza Size Code</div>
+              <div id="idlHelp" class="form-text">Pizza Size Code</div>
             </div>
 
             <div class="mb-3">

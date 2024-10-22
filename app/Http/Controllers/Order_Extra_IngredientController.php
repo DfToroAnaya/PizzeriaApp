@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order_extra_ingredient;
+use Illuminate\Support\Facades\DB;
 
 class Order_Extra_IngredientController extends Controller
 {
@@ -11,7 +13,16 @@ class Order_Extra_IngredientController extends Controller
      */
     public function index()
     {
-        //
+        $order_extra_ingredients= DB::table('order_extra_ingredients')
+        ->join('orders', 'order_extra_ingredients.order_id', '=', 'orders.id')
+        ->join('extra_ingredients', 'order_extra_ingredients.extra_ingredient_id'  , '=', 'extra_ingredients.id')
+        ->select('order_extra_ingredients.id as code',
+                 'orders.total_price as price',
+                 'extra_ingredients.name as name_ingredient',
+                 'order_extra_ingredients.quantity')
+        ->get();
+
+        return view('order_extra_ingredient.index', ['order_extra_ingredients' => $order_extra_ingredients]);
     }
 
     /**
@@ -19,7 +30,17 @@ class Order_Extra_IngredientController extends Controller
      */
     public function create()
     {
-        //
+        $orders = DB::table('orders')
+            ->select('id', 'total_price')
+            ->orderBy('total_price')
+            ->get();
+
+            $extra_ingredients = DB::table('extra_ingredients')
+            ->select('id', 'name')
+            ->orderBy('name')
+            ->get();
+
+            return view('order_extra_ingredient.new', ['orders' => $orders, 'extra_ingredients' => $extra_ingredients]);
     }
 
     /**
@@ -27,7 +48,24 @@ class Order_Extra_IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order_extra_ingredient =  new Order_extra_ingredient();
+
+        $order_extra_ingredient->id = $request->id;
+        $order_extra_ingredient->order_id = $request->order_id;
+        $order_extra_ingredient->extra_ingredient_id = $request->extra_ingredient_id;
+        $order_extra_ingredient->quantity = $request->quantity;
+        $order_extra_ingredient->save();
+
+        $order_extra_ingredients= DB::table('order_extra_ingredients')
+        ->join('orders', 'order_extra_ingredients.order_id', '=', 'orders.id')
+        ->join('extra_ingredients', 'order_extra_ingredients.extra_ingredient_id'  , '=', 'extra_ingredients.id')
+        ->select('order_extra_ingredients.id as code',
+                 'orders.total_price as price',
+                 'extra_ingredients.name as name_ingredient',
+                 'order_extra_ingredients.quantity')
+        ->get();
+
+        return view('order_extra_ingredient.index', ['order_extra_ingredients' => $order_extra_ingredients]);
     }
 
     /**
