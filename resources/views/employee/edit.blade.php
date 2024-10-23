@@ -33,10 +33,15 @@
             </div>
 
             <div class="mb-3">
-                <label for="position " class="form-label">Position Employee </label>
-                <input type="text" class="form-control" id="position" aria-describedby="positionHelp" name="position" 
-                placeholder="Position ">
-              </div>
+              <label for="position" class="form-label">Position Employee</label>
+              <select class="form-control" id="position" name="position">
+                  <option value="" disabled {{ $employee->position == '' ? 'selected' : '' }}>Seleccione una posición</option>
+                  <option value="cajero" {{ $employee->position == 'cajero' ? 'selected' : '' }}>Cajero</option>
+                  <option value="administrador" {{ $employee->position == 'administrador' ? 'selected' : '' }}>Administrador</option>
+                  <option value="cocinero" {{ $employee->position == 'cocinero' ? 'selected' : '' }}>Cocinero</option>
+                  <option value="mensajero" {{ $employee->position == 'mensajero' ? 'selected' : '' }}>Mensajero</option>
+              </select>
+          </div>
 
               <div class="mb-3">
                 <label for="identification_number " class="form-label">Identification Employee</label>

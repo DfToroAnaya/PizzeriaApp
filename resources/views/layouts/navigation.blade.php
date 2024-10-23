@@ -58,6 +58,19 @@
                     </x-nav-link>
                 </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('pizza_raw_materials.index')" :active="request()->routeIs('pizza_raw_materials.index')">
+                        {{ __('Pizza Raw Material') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('pizza_ingredients.index')" :active="request()->routeIs('pizza_ingredients.index')">
+                        {{ __('Pizza Ingredients') }}
+                    </x-nav-link>
+                </div>
+
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -141,6 +154,18 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index')">
                 {{ __('Employees') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('pizza_ingredients.index')" :active="request()->routeIs('pizza_ingredients.index')">
+                {{ __('Pizza Ingredients') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('pizza_raw_materials.index')" :active="request()->routeIs('pizza_raw_materials.index')">
+                {{ __('Pizza Raw Materials') }}
             </x-responsive-nav-link>
         </div>
 

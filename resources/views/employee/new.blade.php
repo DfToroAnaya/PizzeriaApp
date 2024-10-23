@@ -28,10 +28,15 @@
             </div>
 
             <div class="mb-3">
-                <label for="position " class="form-label">Position Employee </label>
-                <input type="text" class="form-control" id="position" aria-describedby="positionHelp" name="position" 
-                placeholder="Position ">
-              </div>
+              <label for="position" class="form-label">Position Employee</label>
+              <select class="form-control" id="position" name="position">
+                  <option value="" selected disabled>Seleccione una posición</option>
+                  <option value="cajero">Cajero</option>
+                  <option value="administrador">Administrador</option>
+                  <option value="cocinero">Cocinero</option>
+                  <option value="mensajero">Mensajero</option>
+              </select>
+          </div>
 
               <div class="mb-3">
                 <label for="identification_number " class="form-label">Identification Employee</label>
