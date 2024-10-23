@@ -174,6 +174,30 @@
                 {{ __('Branches') }}
             </x-responsive-nav-link>
 
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('suppliers.index')" :active="request()->routeIs('suppliers.index')">
+                    {{ __('Suppliers') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('order_extra_ingredients.index')" :active="request()->routeIs('order_extra_ingredients.index')">
+                    {{ __('Order extra ingredients') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('pizza_sizes.index')" :active="request()->routeIs('pizza_sizes.index')">
+                    {{ __('Pizza sizes') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('raw_materials.index')" :active="request()->routeIs('raw_materials.index')">
+                    {{ __('Raw Materials') }}
+                </x-responsive-nav-link>
+            </div>
+
             
         </div>
 
