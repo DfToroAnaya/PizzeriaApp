@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeController extends Controller
 {
@@ -11,7 +12,12 @@ class EmployeController extends Controller
      */
     public function index()
     {
-        //
+        $employees = DB::table('employees')
+            ->join('users', 'employees.user_id', '=', 'users.id')
+            ->select('employees.*','users.name')
+            ->get();
+
+        return view('employee.index', ['employees' => $employees]);
     }
 
     /**
@@ -19,7 +25,10 @@ class EmployeController extends Controller
      */
     public function create()
     {
-        //
+        $users=DB::table('users')
+        ->orderBy('name')
+        ->get();
+        return view('employee.new', ['users' => $users]);
     }
 
     /**
@@ -27,7 +36,23 @@ class EmployeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $employee=new Employee();
+
+        $employee->user_id =$request->user_id ;
+        $employee->position=$request->position;
+        $employee->identification_number=$request->identification_number;
+        $employee->salary=$request->salary;
+        $employee->hire_date=$request->hire_date;
+        $employee->save();
+
+        $employees = DB::table('employees')
+            ->join('users', 'employees.user_id', '=', 'users.id')
+            ->select('employees.*','users.name')
+            ->get();
+
+        return view('employee.index', ['employees' => $employees]);
+
+
     }
 
     /**
@@ -43,7 +68,12 @@ class EmployeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $employee=Employee::find($id);
+        $users=DB::table('users')
+        ->orderBy('name')
+        ->get();
+        return view('employee.edit',['employee' =>$employee, 'users'=>$users]);
+
     }
 
     /**
@@ -51,7 +81,20 @@ class EmployeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $employee=Employee::find($id);
+        $employee->user_id =$request->user_id ;
+        $employee->position=$request->position;
+        $employee->identification_number=$request->identification_number;
+        $employee->salary=$request->salary;
+        $employee->hire_date=$request->hire_date;
+        $employee->save();
+
+        $employees = DB::table('employees')
+            ->join('users', 'employees.user_id', '=', 'users.id')
+            ->select('employees.*','users.name')
+            ->get();
+
+        return view('employee.index', ['employees' => $employees]);
     }
 
     /**
@@ -59,6 +102,16 @@ class EmployeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $employee=Employee::find($id);
+        $employee->delete();
+
+
+        $employees = DB::table('employees')
+            ->join('users', 'employees.user_id', '=', 'users.id')
+            ->select('employees.*','users.name')
+            ->get();
+
+        return view('employee.index', ['employees' => $employees]);
+
     }
 }
