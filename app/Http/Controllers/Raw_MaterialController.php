@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Raw_Material;
 
 class Raw_MaterialController extends Controller
 {
@@ -11,7 +12,8 @@ class Raw_MaterialController extends Controller
      */
     public function index()
     {
-        //
+        $raw_materials= Raw_Material::all();
+        return view('raw_material.index',['raw_materials'=>$raw_materials]);
     }
 
     /**
@@ -19,7 +21,7 @@ class Raw_MaterialController extends Controller
      */
     public function create()
     {
-        //
+        return view('raw_material.new');
     }
 
     /**
@@ -27,7 +29,14 @@ class Raw_MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $raw_material = new Raw_Material();
+        $raw_material->id = $request->id;
+        $raw_material->name = $request->name;
+        $raw_material->unit = $request->unit;
+        $raw_material->current_stock = $request->current_stock;
+        $raw_material->save();
+
+        return redirect()->route('raw_materials.index');
     }
 
     /**
@@ -43,7 +52,8 @@ class Raw_MaterialController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $raw_material = Raw_Material::find($id);
+        return view('raw_material.edit', ['raw_material' => $raw_material]);
     }
 
     /**
@@ -51,7 +61,14 @@ class Raw_MaterialController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $raw_material = Raw_Material::find($id);
+        
+        $raw_material->name = $request->name;
+        $raw_material->unit = $request->unit;
+        $raw_material->current_stock = $request->current_stock;
+        $raw_material->save();
+
+        return redirect()->route('raw_materials.index');
     }
 
     /**
@@ -59,6 +76,10 @@ class Raw_MaterialController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $raw_material = Raw_Material::find($id);
+        $raw_material->delete();
+
+        // Redirigir a la lista de categorías
+        return redirect()->route('raw_materials.index');
     }
 }
