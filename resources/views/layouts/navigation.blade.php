@@ -16,6 +16,157 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+
+                <!-- usuarios -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-9 sm:flex  items-center">
+                    <x-dropdown align="right" width="48">
+                    <x-slot name="trigger">
+                        <button class="inline-flex  px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            <div>{{ __('User') }}</div>
+                            <div class="ms-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                             </div>
+                         </button>
+                    </x-slot>
+            
+                    <x-slot name="content">
+                        <!-- Submenú de user -->
+                        <x-dropdown-link href="{{ route('clients.index')}}">
+                            {{ __('Clients') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link href="{{ route('employees.index')}}">
+                            {{ __('Employees') }}
+                        </x-dropdown-link>
+                      
+                    </x-slot>
+                </x-dropdown>
+            </div>
+
+               
+
+                     <!-- Pizza -->
+                     <div class="hidden space-x-8 sm:-my-px sm:ms-9 sm:flex  items-center">
+                        <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="inline-flex  px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                <div>{{ __('Pizza') }}</div>
+                                <div class="ms-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                 </div>
+                             </button>
+                        </x-slot>
+                
+                        <x-slot name="content">
+                            <!-- Submenú de Pizza -->
+                            <x-dropdown-link href="{{ route('pizzas.index')}}">
+                                {{ __('Tipe Pizza') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('pizza_raw_materials.index')}}">
+                                {{ __('Pizza Raw Material') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('pizza_ingredients.index')}}">
+                                {{ __('Pizza Ingredients') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('pizza_sizes.index')}}">
+                                {{ __('Pizza Sizes') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
+
+
+                <!-- Ingrediente -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-9 sm:flex  items-center">
+                    <x-dropdown align="right" width="48">
+                    <x-slot name="trigger">
+                        <button class="inline-flex  px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            <div>{{ __('Ingredientes') }}</div>
+                            <div class="ms-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                             </div>
+                         </button>
+                    </x-slot>
+            
+                    <x-slot name="content">
+                        <!-- Submenú de Ingrediente -->
+                        <x-dropdown-link href="{{ route('ingredients.index')}}">
+                            {{ __('Ingrediente') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link href="{{ route('extra_ingredients.index')}}">
+                            {{ __('Ingredientes Extra') }}
+                        </x-dropdown-link>
+                    
+                    </x-slot>
+                </x-dropdown>
+            </div>
+                
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('branches.index')" :active="request()->routeIs('branches.index')">
+                        {{ __('Branches') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- Ordenes -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-9 sm:flex  items-center">
+                    <x-dropdown align="right" width="48">
+                    <x-slot name="trigger">
+                        <button class="inline-flex  px-3 py-2 text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            <div>{{ __('Order') }}</div>
+                            <div class="ms-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                             </div>
+                         </button>
+                    </x-slot>
+            
+                    <x-slot name="content">
+                        <!-- Submenú de user -->
+                        <x-dropdown-link href="{{ route('orders.index')}}">
+                            {{ __('Orders') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link href="{{ route('order_pizzas.index')}}">
+                            {{ __('Orders Pizza') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link href="{{ route('order_extra_ingredients.index')}}">
+                            {{ __('Order extra ingredients') }}
+                        </x-dropdown-link>
+                      
+                    </x-slot>
+                </x-dropdown>
+            </div>
+
+               
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('suppliers.index')" :active="request()->routeIs('suppliers.index')">
+                        {{ __('Suppliers') }}
+                    </x-nav-link>
+                </div>
+
+ 
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('raw_materials.index')" :active="request()->routeIs('raw_materials.index')">
+                        {{ __('Raw Materials') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('purchases.index')" :active="request()->routeIs('purchases.index')">
+                        {{ __('Purchases') }}
+                    </x-nav-link>
+                </div>
+
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -71,6 +222,98 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                {{ __('Clients') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                {{ __('Orders') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('pizzas.index')" :active="request()->routeIs('pizzas.index')">
+                {{ __('Pizzas') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('ingredients.index')" :active="request()->routeIs('ingredients.index')">
+                {{ __('Ingredientes') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('extra_ingredients.index')" :active="request()->routeIs('extra_ingredients.index')">
+                {{ __('Ingredientes Extra') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">   
+            <x-responsive-nav-link :href="route('branches.index')" :active="request()->routeIs('branches.index')">
+                {{ __('Branches') }}
+            </x-responsive-nav-link>
+        </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('suppliers.index')" :active="request()->routeIs('suppliers.index')">
+                    {{ __('Suppliers') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('order_extra_ingredients.index')" :active="request()->routeIs('order_extra_ingredients.index')">
+                    {{ __('Order extra ingredients') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('pizza_sizes.index')" :active="request()->routeIs('pizza_sizes.index')">
+                    {{ __('Pizza sizes') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('raw_materials.index')" :active="request()->routeIs('raw_materials.index')">
+                    {{ __('Raw Materials') }}
+                </x-responsive-nav-link>
+            </div>
+
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index')">
+                {{ __('Employees') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('pizza_ingredients.index')" :active="request()->routeIs('pizza_ingredients.index')">
+                {{ __('Pizza Ingredients') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('pizza_raw_materials.index')" :active="request()->routeIs('pizza_raw_materials.index')">
+                {{ __('Pizza Raw Materials') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">   
+            <x-responsive-nav-link :href="route('order_pizzas.index')" :active="request()->routeIs('order_pizzas.index')">
+                {{ __('Orders Pizza') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">   
+            <x-responsive-nav-link :href="route('purchases.index')" :active="request()->routeIs('purchases.index')">
+                {{ __('Purchases') }}
+            </x-responsive-nav-link>
+        </div>
+     
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
