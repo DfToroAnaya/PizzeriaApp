@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\ClientController;
 use App\Http\Controllers\api\OrderController;
 use App\Http\Controllers\api\Order_PizzaController;
+use App\Http\Controllers\api\PurchaseController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -33,4 +34,12 @@ Route::get('/order_pizzas/create', [Order_PizzaController::class, 'create'])->na
 Route::delete('/order_pizzas/{order_pizza}', [Order_PizzaController::class, 'destroy'])->name('order_pizzas.destroy');
 Route::put('/order_pizzas/{order_pizza}', [Order_PizzaController::class, 'update'])->name('order_pizzas.update');
 Route::get('/order_pizzas/{order_pizza}/edit', [Order_PizzaController::class, 'edit'])->name('order_pizzas.edit');
+
+//ROUTES PURCHASES
+Route::get('/purchases', [PurchaseController::class, 'index'])->name('purchases');
+Route::post('/purchases', [PurchaseController::class, 'store'])->name('purchases.store');
+Route::get('/purchases/create', [PurchaseController::class, 'create'])->name('purchases.create');
+Route::delete('/purchases/{purchase}', [PurchaseController::class, 'destroy'])->name('purchases.destroy');
+Route::put('/purchases/{purchase}', [PurchaseController::class, 'update'])->name('purchases.update');
+Route::get('/purchases/{purchase}/edit', [PurchaseController::class, 'edit'])->name('purchases.edit');
 
