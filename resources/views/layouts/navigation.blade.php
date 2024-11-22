@@ -18,14 +18,14 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('pizzas.index')" :active="request()->routeIs('pizzas.index')">
-                        {{ __('Pizzas') }}
+                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                        {{ __('Clients') }}
                     </x-nav-link>
                 </div>
-
+                
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
-                        {{ __('Clients') }}
+                    <x-nav-link :href="route('pizzas.index')" :active="request()->routeIs('pizzas.index')">
+                        {{ __('Pizzas') }}
                     </x-nav-link>
                 </div>
 
@@ -39,12 +39,13 @@
                     <x-nav-link :href="route('extra_ingredients.index')" :active="request()->routeIs('extra_ingredients.index')">
                         {{ __('Ingredientes Extra') }}
                     </x-nav-link>
+                </div>
 
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('branches.index')" :active="request()->routeIs('branches.index')">
                         {{ __('Branches') }}
                     </x-nav-link>
                 </div>
-
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
@@ -64,12 +65,50 @@
                     </x-nav-link>
                 </div>
 
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('suppliers.index')" :active="request()->routeIs('suppliers.index')">
+                        {{ __('Suppliers') }}
+                    </x-nav-link>
+                </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('pizza_ingredients.index')" :active="request()->routeIs('pizza_ingredients.index')">
                         {{ __('Pizza Ingredients') }}
                     </x-nav-link>
                 </div>
 
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('order_pizzas.index')" :active="request()->routeIs('order_pizzas.index')">
+                        {{ __('Orders Pizza') }}
+                    </x-nav-link>
+                </div>  
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('raw_materials.index')" :active="request()->routeIs('raw_materials.index')">
+                        {{ __('Raw Materials') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('purchases.index')" :active="request()->routeIs('purchases.index')">
+                        {{ __('Purchases') }}
+                    </x-nav-link>
+                </div>
+
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('order_extra_ingredients.index')" :active="request()->routeIs('order_extra_ingredients.index')">
+                        {{ __('Order extra ingredients') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('pizza_sizes.index')" :active="request()->routeIs('pizza_sizes.index')">
+                        {{ __('Pizza Sizes') }}
+                    </x-nav-link>
+                </div>
 
             </div>
 
@@ -128,6 +167,18 @@
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')">
+                {{ __('Clients') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                {{ __('Orders') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('pizzas.index')" :active="request()->routeIs('pizzas.index')">
                 {{ __('Pizzas') }}
             </x-responsive-nav-link>
@@ -143,13 +194,38 @@
             <x-responsive-nav-link :href="route('extra_ingredients.index')" :active="request()->routeIs('extra_ingredients.index')">
                 {{ __('Ingredientes Extra') }}
             </x-responsive-nav-link>
+        </div>
 
+        <div class="pt-2 pb-3 space-y-1">   
             <x-responsive-nav-link :href="route('branches.index')" :active="request()->routeIs('branches.index')">
                 {{ __('Branches') }}
             </x-responsive-nav-link>
-
-            
         </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('suppliers.index')" :active="request()->routeIs('suppliers.index')">
+                    {{ __('Suppliers') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('order_extra_ingredients.index')" :active="request()->routeIs('order_extra_ingredients.index')">
+                    {{ __('Order extra ingredients') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('pizza_sizes.index')" :active="request()->routeIs('pizza_sizes.index')">
+                    {{ __('Pizza sizes') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('raw_materials.index')" :active="request()->routeIs('raw_materials.index')">
+                    {{ __('Raw Materials') }}
+                </x-responsive-nav-link>
+            </div>
+
 
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.index')">
@@ -168,6 +244,19 @@
                 {{ __('Pizza Raw Materials') }}
             </x-responsive-nav-link>
         </div>
+
+        <div class="pt-2 pb-3 space-y-1">   
+            <x-responsive-nav-link :href="route('order_pizzas.index')" :active="request()->routeIs('order_pizzas.index')">
+                {{ __('Orders Pizza') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">   
+            <x-responsive-nav-link :href="route('purchases.index')" :active="request()->routeIs('purchases.index')">
+                {{ __('Purchases') }}
+            </x-responsive-nav-link>
+        </div>
+     
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Supplier;
 
 class SupplierController extends Controller
 {
@@ -11,7 +12,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers= Supplier::all();
+        return view('supplier.index',['suppliers'=>$suppliers]);
     }
 
     /**
@@ -19,7 +21,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('supplier.new');
     }
 
     /**
@@ -27,7 +29,13 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supplier = new Supplier();
+        $supplier->id = $request->id;
+        $supplier->name = $request->name;
+        $supplier->contact_info = $request->contact_info;
+        $supplier->save();
+
+        return redirect()->route('suppliers.index');
     }
 
     /**
@@ -43,7 +51,8 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $supplier = Supplier::find($id);
+        return view('supplier.edit', ['supplier' => $supplier]);
     }
 
     /**
@@ -51,7 +60,13 @@ class SupplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $supplier = Supplier::find($id);
+        //$supplier->id = $request->id;
+        $supplier->name = $request->name;
+        $supplier->contact_info = $request->contact_info;
+        $supplier->save();
+
+        return redirect()->route('suppliers.index');
     }
 
     /**
@@ -59,6 +74,10 @@ class SupplierController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $supplier = Supplier::find($id);
+        $supplier->delete();
+
+        // Redirigir a la lista de categorías
+        return redirect()->route('suppliers.index');
     }
 }

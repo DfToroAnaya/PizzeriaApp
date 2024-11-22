@@ -4,6 +4,8 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Raw_Material;
 
 class Raw_MaterialController extends Controller
 {
@@ -15,7 +17,7 @@ class Raw_MaterialController extends Controller
         $raw_materials=DB::table('raw_materials')
         ->orderBy('name')
         ->get();
-        return json_encode('raw_materials' => $raw_materials);
+        return json_encode(['raw_materials' => $raw_materials]);
     }
 
     /**

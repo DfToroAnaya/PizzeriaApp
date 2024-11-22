@@ -2,41 +2,36 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Orders') }}
+            {{ __('Order Pizzas') }}
         </h2>
     </x-slot>
 
     <div class="container">
         <br> 
-        <a href="{{ route('orders.create') }}" class="btn btn-success"> Add Order </a>
-        
+        <a href="{{ route('order_pizzas.create') }}" class="btn btn-success"> Add Order Pizza </a>
         <table class="table">
             <thead>
               <tr>
                 <th scope="col">Code</th>
-                <th scope="col">Client</th>
-                <th scope="col">Branch</th>
-                <th scope="col">Total Price</th>
-                <th scope="col">Status</th>
-                <th scope="col">Delivery Type</th>
-                <th scope="col">Employee</th>
+                <th scope="col">Order Id</th>
+                <th scope="col">Pizza Size</th>
+                <th scope="col">Order Date</th>
+                <th scope="col">Quantity</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
 
             <tbody>
-                @foreach ($orders as $order)
+                @foreach ($order_pizzas as $order_pizza)
               <tr>
-                <th scope="row">{{$order->code}}</th>
-                <td>{{$order->client_name}}</td>
-                <td>{{$order->branch_name}}</td>
-                <td>{{$order->total_price}}</td>
-                <td>{{$order->status}}</td>
-                <td>{{$order->delivery_type}}</td>
-                <td>{{$order->employee_id ?? 'No assined'}}</td>
+                <th scope="row">{{$order_pizza->code}}</th>
+                <td>{{$order_pizza->order}}</td>
+                <td>{{$order_pizza->pizza_size}}</td>
+                <td>{{$order_pizza->order_date}}</td>
+                <td>{{$order_pizza->quantity}}</td>
                 <td>
-                  <a href="{{ route('orders.edit', ['order'=>$order->code]) }}" class="btn btn-info"> Edit </a>
-                  <form action="{{route('orders.destroy', ['order'=>$order->code])}}" method="POST" 
+                  <a href="{{ route('order_pizzas.edit', ['order_pizza'=>$order_pizza->code]) }}" class="btn btn-info"> Edit </a>
+                  <form action="{{route('order_pizzas.destroy', ['order_pizza'=>$order_pizza->code])}}" method="POST" 
                     style="display: inline-block">
                     @method('delete')
                     @csrf
