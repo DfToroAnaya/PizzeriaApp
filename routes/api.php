@@ -15,7 +15,6 @@ use App\Http\Controllers\Api\EmployeController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\Pizza_IngredientController;
 use App\Http\Controllers\Api\BrancheController;
-use App\Http\Controllers\Api\PizzaController;
 use App\Http\Controllers\Api\IngredientController;
 use App\Http\Controllers\Api\Pizza_Raw_MaterialController;
 use App\Http\Controllers\Api\Extra_IngredientController;
