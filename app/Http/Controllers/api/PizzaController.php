@@ -4,8 +4,14 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Models\Pizza;
 use Illuminate\Support\Facades\DB;
+=======
+use Illuminate\Support\Facades\DB;
+use App\Models\Pizza;
+
+>>>>>>> 09a755009711a5960f6fb2f871b41a86caa06d9a
 
 class PizzaController extends Controller
 {
@@ -16,7 +22,11 @@ class PizzaController extends Controller
     {
         $pizzas= Pizza::all();
         return json_encode(['pizzas' => $pizzas]);
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 09a755009711a5960f6fb2f871b41a86caa06d9a
     }
 
     /**
@@ -29,7 +39,10 @@ class PizzaController extends Controller
         $pizza->save();
 
         return json_encode(['pizza'=>$pizza]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 09a755009711a5960f6fb2f871b41a86caa06d9a
     }
 
     /**
@@ -43,7 +56,10 @@ class PizzaController extends Controller
         }
         
         return json_encode(['pizza' => $pizza]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 09a755009711a5960f6fb2f871b41a86caa06d9a
     }
 
     /**
@@ -58,7 +74,10 @@ class PizzaController extends Controller
         $pizza->name = $request->nombre;
         $pizza->save();
         return json_encode(['pizza'=> $pizza]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 09a755009711a5960f6fb2f871b41a86caa06d9a
     }
 
     /**
@@ -73,6 +92,9 @@ class PizzaController extends Controller
         $pizza->delete();
 
         return json_encode(['pizzas'=>$pizzas, 'success' => true]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 09a755009711a5960f6fb2f871b41a86caa06d9a
     }
 }
