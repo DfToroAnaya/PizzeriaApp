@@ -26,6 +26,20 @@ class EmployeController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validate=Validator::make($request->all(),[
+
+       'position'=>['required'], 
+       'salary'=>['required', 'numeric'],
+       'hire_date'=>['required', 'date']
+        ]);
+
+        if($validate->fails()){
+            return response()->json([
+                'msg' =>'Se produjo un error en la validacion de la informacion',
+                'statusCode'=> 400
+            ]);
+        }
         
 
         $employee=new Employee();
@@ -61,6 +75,22 @@ class EmployeController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validate=Validator::make($request->all(),[
+
+            'position'=>['required'], 
+           
+            'salary'=>['required', 'numeric'],
+            'hire_date'=>['required', 'date']
+             ]);
+     
+             if($validate->fails()){
+                 return response()->json([
+                     'msg' =>'Se produjo un error en la validacion de la informacion',
+                     'statusCode'=> 400
+                 ]);
+             }
+
+
         $employee=Employee::find($id);
         if(is_null($employee)){
             return abort(404);

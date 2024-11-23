@@ -15,9 +15,7 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        $pizzas= DB :: table('pizzas')
-        ->orderBy('name')
-        ->get();
+        $pizzas= Pizza::all();
         return json_encode(['pizzas' => $pizzas]);
         
     }
@@ -27,7 +25,11 @@ class PizzaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pizza = new Pizza();
+        $pizza->name = $request->nombre;
+        $pizza->save();
+
+        return json_encode(['pizza'=>$pizza]);
     }
 
     /**
@@ -35,7 +37,12 @@ class PizzaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $pizza = Pizza::find($id);
+        if(is_null($pizza)){
+            return abort(404);
+        }
+        
+        return json_encode(['pizza' => $pizza]);
     }
 
     /**
@@ -43,7 +50,13 @@ class PizzaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pizza = Pizza::find($id);
+        if(is_null($pizza)){
+            return abort(404);
+        }
+        $pizza->name = $request->nombre;
+        $pizza->save();
+        return json_encode(['pizza'=> $pizza]);
     }
 
     /**
@@ -51,6 +64,12 @@ class PizzaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pizza = Pizza::find($id);
+        if(is_null($pizza)){
+            return abort(404);
+        }
+        $pizza->delete();
+
+        return json_encode(['pizzas'=>$pizzas, 'success' => true]);
     }
 }

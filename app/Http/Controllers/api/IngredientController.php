@@ -14,9 +14,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        $ingredients= DB::table('ingredients')
-        ->orderBy('name')
-        ->get();
+        $ingredients= Ingredient::all();
         return json_encode(['ingredients' => $ingredients]);
     }
 
@@ -25,7 +23,10 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ingredient = new Ingredient();
+        $ingredient->name = $request->nombre;
+        $ingredient->save();
+        return json_encode(['ingredient' => $ingredient]);
     }
 
     /**
@@ -33,7 +34,11 @@ class IngredientController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ingredient = Ingredient::find($id);
+        if(is_null($ingredient)){
+            return abort(404);
+        }
+        return json_encode(['ingredient'=>$ingredient]);
     }
 
     /**
@@ -41,7 +46,14 @@ class IngredientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $ingredient = Ingredient::find($id);
+        if(is_null($ingredient)){
+            return abort(404);
+        }
+        $ingredient->name = $request->nombre;
+        $ingredient->save();
+
+        return json_encode(['ingredient'=>$ingredient]);
     }
 
     /**
@@ -49,6 +61,12 @@ class IngredientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $ingredient = Ingredient::find($id);
+        if(is_null($ingredient)){
+            return abort(404);
+        }
+        $ingredient->delete();
+
+        return json_encode(['ingredients' =>$ingredients, 'success'=>true]);
     }
 }
