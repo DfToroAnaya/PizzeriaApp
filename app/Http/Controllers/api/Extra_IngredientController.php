@@ -75,3 +75,4 @@ class Extra_IngredientController extends Controller
         return json_encode(['extra_ingredients'=>$extra_ingredients, 'success'=> true]);
     }
 }
+

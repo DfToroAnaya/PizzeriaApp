@@ -70,3 +70,4 @@ class IngredientController extends Controller
         return json_encode(['ingredients' =>$ingredients, 'success'=>true]);
     }
 }
+
