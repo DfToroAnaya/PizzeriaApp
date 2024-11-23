@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pizza_ingredient;
+use Illuminate\Support\Facades\DB;
 
 class Pizza_IngredientController extends Controller
 {
@@ -11,7 +13,17 @@ class Pizza_IngredientController extends Controller
      */
     public function index()
     {
-        //
+        $pizza_ingredients = DB::table('pizza_ingredients')
+        ->join('pizzas', 'pizza_ingredients.pizza_id', '=', 'pizzas.id')          
+        ->join('ingredients', 'pizza_ingredients.ingredient_id', '=', 'ingredients.id') 
+        ->select(
+            'pizza_ingredients.*',                 
+            'pizzas.name as pizza_name',
+            'ingredients.name as ingredient_name')
+        ->get();
+
+        return view('pizza_ingredient.index', ['pizza_ingredients' => $pizza_ingredients]);
+
     }
 
     /**
@@ -19,7 +31,17 @@ class Pizza_IngredientController extends Controller
      */
     public function create()
     {
-        //
+        $pizzas = DB::table('pizzas')
+        ->select('id', 'name as pizza_name') 
+        ->orderBy('name') 
+        ->get();
+
+        $ingredients = DB::table('ingredients')
+        ->select('id', 'name as ingredient_name') 
+        ->orderBy('name') 
+        ->get();
+
+        return view('pizza_ingredient.new', ['pizzas' => $pizzas, 'ingredients' => $ingredients]);
     }
 
     /**
@@ -27,7 +49,23 @@ class Pizza_IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pizza_ingredient = new Pizza_ingredient();
+
+        $pizza_ingredient->pizza_id  = $request->pizza_id;
+        $pizza_ingredient->ingredient_id  = $request->ingredient_id;
+        $pizza_ingredient->save();
+
+        $pizza_ingredients = DB::table('pizza_ingredients')
+        ->join('pizzas', 'pizza_ingredients.pizza_id', '=', 'pizzas.id')          
+        ->join('ingredients', 'pizza_ingredients.ingredient_id', '=', 'ingredients.id') 
+        ->select(
+            'pizza_ingredients.*',                 
+            'pizzas.name as pizza_name',
+            'ingredients.name as ingredient_name')
+        ->get();
+
+
+        return view('pizza_ingredient.index', ['pizza_ingredients' => $pizza_ingredients]);
     }
 
     /**
@@ -43,7 +81,19 @@ class Pizza_IngredientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pizza_ingredient = Pizza_ingredient::find($id);
+        $pizzas = DB::table('pizzas')
+        ->select('id', 'name as pizza_name') 
+        ->orderBy('name') 
+        ->get();
+
+        $ingredients = DB::table('ingredients')
+        ->select('id', 'name as ingredient_name') 
+        ->orderBy('name') 
+        ->get();
+
+        return view('pizza_ingredient.edit', ['pizza_ingredient' => $pizza_ingredient, 'pizzas'=>$pizzas,  'ingredients'=> $ingredients ]);
+
     }
 
     /**
@@ -51,7 +101,22 @@ class Pizza_IngredientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pizza_ingredient = Pizza_ingredient::find($id);
+
+        $pizza_ingredient->pizza_id  = $request->pizza_id;
+        $pizza_ingredient->ingredient_id  = $request->ingredient_id;
+        $pizza_ingredient->save();
+
+        $pizza_ingredients = DB::table('pizza_ingredients')
+        ->join('pizzas', 'pizza_ingredients.pizza_id', '=', 'pizzas.id')          
+        ->join('ingredients', 'pizza_ingredients.ingredient_id', '=', 'ingredients.id') 
+        ->select(
+            'pizza_ingredients.*',                 
+            'pizzas.name as pizza_name',
+            'ingredients.name as ingredient_name')
+        ->get();
+
+        return redirect()->route('pizza_ingredients.index');
     }
 
     /**
@@ -59,6 +124,19 @@ class Pizza_IngredientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pizza_ingredient = Pizza_ingredient::find($id);
+        $pizza_ingredient ->delete();
+
+        $pizza_ingredients = DB::table('pizza_ingredients')
+        ->join('pizzas', 'pizza_ingredients.pizza_id', '=', 'pizzas.id')          
+        ->join('ingredients', 'pizza_ingredients.ingredient_id', '=', 'ingredients.id') 
+        ->select(
+            'pizza_ingredients.*',                 
+            'pizzas.name as pizza_name',
+            'ingredients.name as ingredient_name')
+        ->get();
+
+        return view('pizza_ingredient.index', ['pizza_ingredients' => $pizza_ingredients]);
+
     }
 }
