@@ -78,7 +78,6 @@ class EmployeController extends Controller
         $validate=Validator::make($request->all(),[
 
             'position'=>['required'], 
-           
             'salary'=>['required', 'numeric'],
             'hire_date'=>['required', 'date']
              ]);
