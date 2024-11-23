@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class Pizza_SizesController extends Controller
 {
@@ -29,7 +30,7 @@ class Pizza_SizesController extends Controller
         $validate = Validator::make($request->all(), [
             'id' => ['required', 'numeric', 'min:1'],
             'pizzas_id' => ['required', 'numeric', 'min:1'],
-            'size' => ['required', 'max:30', 'unique'],
+            'size' => ['required', 'max:30', 'unique:pizza_sizes,size'],
             'price' => ['required', 'numeric', 'min:1']
         ]);
 
@@ -46,7 +47,7 @@ class Pizza_SizesController extends Controller
         $pizza_size->size = $request->size;
         $pizza_size->price =$request->price;
         $pizza_size->save();
-        return json_encode(['pizza_sizes' => $pizza_sizes]);
+        return json_encode(['pizza_size' => $pizza_size]);
     }
 
     /**
