@@ -17,6 +17,7 @@ use App\Http\Controllers\Pizza_Raw_MaterialController;
 use App\Http\Controllers\Order_Extra_IngredientController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\Raw_MaterialController;
+use App\Http\Middleware\CheckRole;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,9 +36,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
     ////---------------------> CLIENTS <---------------------
 
-    Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+    Route::get('/clients', [ClientController::class, 'index'])
+    ->middleware(CheckRole::class . ':empleado')
+    ->name('clients.index');
     Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
     Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
     Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
